@@ -7,22 +7,14 @@ import { PreviewModal } from './previewModal';
 const getHtml = editorState => draftToHtml(convertToRaw(editorState.getCurrentContent()));
 
 class MyEditor extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editorState: EditorState.createEmpty()
-    };
-  }
-
-  onEditorStateChange = editorState => {
-    this.setState({
-      editorState
-    });
+  state = {
+    editorState: EditorState.createEmpty()
   };
-
-  render() {
+  onEditorStateChange = editorState => {
+    this.setState({editorState});
+  };
+  render() {  
     const { editorState } = this.state;
-
     return (
       <div>
         <Editor
@@ -31,6 +23,7 @@ class MyEditor extends Component {
           editorClassName="demo-editor"
           onEditorStateChange={this.onEditorStateChange}
           placeholder="The message goes here..."
+          
         />
         <h4>Underlying HTML</h4>
         <div className="html-view">
